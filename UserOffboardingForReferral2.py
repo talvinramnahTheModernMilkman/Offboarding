@@ -1,11 +1,30 @@
 import streamlit as st
 import pandas as pd
 import gdown
-import requests 
+import requests
 
 # Debug Mode
 DEBUG = True
 
+# Initialize session state
+if "query_processed" not in st.session_state:
+    st.session_state.query_processed = False
+
+# Process query parameters
+query_params = st.query_params
+postcode = query_params.get("postcode", [""])[0].strip().upper()
+
+if DEBUG:
+    st.write("Query parameters received:", query_params)
+    st.write("Processed postcode:", postcode)
+
+# Avoid session state reprocessing
+if postcode and not st.session_state.query_processed:
+    st.session_state.query_processed = True
+    st.write(f"Processing postcode: {postcode}")
+else:
+    st.error("No valid postcode provided.")
+    
 # File URLs
 polygon_file_url = "https://drive.google.com/uc?id=19cdI-kinFtT1CqpYRVCfrXvvk16rTkKA"
 unservicable_file_url = "https://drive.google.com/uc?id=1nMI8Io9kLfOyNISUIFB44dzYWwi4hbE5&export=download"
