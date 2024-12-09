@@ -48,7 +48,9 @@ if "last_processed_postcode" not in st.session_state:
 
 # Get query parameters
 query_params = st.query_params
-postcode = query_params.get("postcode", [""])[0].strip().replace(" ", "").upper() if query_params else None
+postcode = query_params.get("postcode", [""])[0].strip().upper() if query_params else None
+st.write("Normalized postcode:", postcode)
+st.write("Raw query parameters:", query_params)
 
 if DEBUG:
     st.write("Query parameters:", query_params)
