@@ -49,7 +49,7 @@ if "last_processed_postcode" not in st.session_state:
 
 # Get query parameters
 query_params = st.query_params
-st.write("Raw query parameters:", query_params)  # Debug the raw input
+#st.write("Raw query parameters:", query_params)  # Debug the raw input
 
 # Extract and normalize postcode
 if "postcode" in query_params:
@@ -63,14 +63,14 @@ else:
     postcode = None
 
 # Debugging outputs
-st.write("Raw query parameters:", query_params)  # Debug the raw input
-st.write("Extracted raw postcode:", postcode_raw if "postcode" in query_params else None)  # Debug raw value
-st.write("Normalized postcode:", postcode)  # Debug the processed postcode
+#st.write("Raw query parameters:", query_params)  # Debug the raw input
+#st.write("Extracted raw postcode:", postcode_raw if "postcode" in query_params else None)  # Debug raw value
+#st.write("Normalized postcode:", postcode)  # Debug the processed postcode
 
 # Debugging outputs
-if DEBUG:
-    st.write("Query parameters:", query_params)
-    st.write("Processed postcode:", postcode)
+#if DEBUG:
+    #st.write("Query parameters:", query_params)
+    #st.write("Processed postcode:", postcode)
 
 # HUB_ID to Hub Name Mapping
 hub_names = {
