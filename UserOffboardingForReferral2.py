@@ -121,7 +121,7 @@ if postcode:
                 interested_users = unservicable_df[unservicable_df['HUB_ID'] == hub_id].shape[0]
                 st.warning(
                     f"Sorry, we don’t deliver to your area yet, but we are looking at expanding into **{hub_name}**. "
-                    f"**{interested_users} people** are interested. Help us reach **50 sign-ups**!"
+                    f"**{interested_users} people** are interested. Get your {hub_name} to 5000 sign ups by sharing the link below to get us in your area!"
                 )
                 referral_link = f"https://themodernmilkman.co.uk/refer?postcode={postcode}"
                 st.info(f"Share your referral link: [Link]({referral_link})")
@@ -129,6 +129,6 @@ if postcode:
             else:
                 st.error("HUB_ID not found for your area.")
         else:
-            st.error("Area not found in database. Ensure the postcode is valid.")
+            st.error("We could not find your postcode :( double check and ensure it's valid.")
 else:
     st.error("No valid postcode provided.")
