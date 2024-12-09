@@ -124,7 +124,7 @@ if postcode:
                     f"**{interested_users} people** are interested. Get your {hub_name} to 5000 sign ups by sharing the link below to get us in your area!"
                 )
                 referral_link = f"https://themodernmilkman.co.uk/refer?postcode={postcode}"
-                st.info(f"Share your referral link: [Link]({referral_link})")
+                st.info(f"Share your referral link: https://themodernmilkman.co.uk/?utm_source=GetModernMilkmanToYourArea")
                 st.text_input("Enter your phone number to stay updated.")
             else:
                 st.error("HUB_ID not found for your area.")
