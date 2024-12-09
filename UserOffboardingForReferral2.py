@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import gdown
-import requests 
+import requests
 
 # Debugging mode
 DEBUG = True
@@ -23,7 +23,8 @@ def load_data():
 
         polygon_df = pd.read_csv(polygon_file_path)
         polygon_df.columns = polygon_df.columns.str.strip().str.upper()
-        polygon_df['POSTCODE'] = polygon_df['POSTCODE'].str.strip().str.upper()
+        # Normalize postcodes in polygon_df
+        polygon_df['POSTCODE'] = polygon_df['POSTCODE'].str.strip().str.replace(" ", "").str.upper()
 
         unservicable_df = pd.read_csv(unservicable_file_path)
         unservicable_df.columns = unservicable_df.columns.str.strip().str.upper()
@@ -51,14 +52,19 @@ query_params = st.query_params
 st.write("Raw query parameters:", query_params)  # Debug the raw input
 
 # Extract and normalize postcode
-postcode = query_params.get("postcode", [""])[0].strip().replace(" ", "").upper() if query_params else None
+if query_params and "postcode" in query_params:
+    postcode = query_params["postcode"][0].strip().replace(" ", "").upper()
+else:
+    postcode = None
+
 st.write("Normalized postcode:", postcode)  # Debug the processed postcode
 
-
+# Debugging outputs
 if DEBUG:
     st.write("Query parameters:", query_params)
     st.write("Processed postcode:", postcode)
 
+# HUB_ID to Hub Name Mapping
 hub_names = {
     25: "Swindon",
     11: "Lichfield",
@@ -86,6 +92,10 @@ if postcode:
         st.title("Modern Milkman Availability")
         st.write(f"Checking availability for postcode: {postcode}")
 
+        # Debug matching logic
+        matching_entries = polygon_df[polygon_df['POSTCODE'] == postcode]
+        st.write("Matching entries in polygon_df:", matching_entries)
+
         # Find the sector for the given postcode
         result = polygon_df.loc[polygon_df['POSTCODE'] == postcode, 'POLYGON_SECTOR']
         sector = result.iloc[0] if not result.empty else None
@@ -111,6 +121,6 @@ if postcode:
             else:
                 st.error("HUB_ID not found for your area.")
         else:
-            st.error("Area not found in database.")
+            st.error("Area not found in database. Ensure the postcode is valid.")
 else:
     st.error("No valid postcode provided.")
