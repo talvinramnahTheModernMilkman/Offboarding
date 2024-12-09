@@ -97,8 +97,8 @@ if postcode:
         st.info("Postcode already processed. Refresh to retry.")
     else:
         st.session_state["last_processed_postcode"] = postcode
-        st.title("Modern Milkman Availability")
-        st.write(f"Checking availability for postcode: {postcode}")
+        st.title("Modern Milkman postcode checker")
+        st.write(f"Checking milk rounds near: {postcode}")
 
         # Debug matching logic
         matching_entries = polygon_df[polygon_df['POSTCODE'] == postcode]
