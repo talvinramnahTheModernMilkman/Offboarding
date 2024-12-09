@@ -52,11 +52,19 @@ query_params = st.query_params
 st.write("Raw query parameters:", query_params)  # Debug the raw input
 
 # Extract and normalize postcode
-if query_params and "postcode" in query_params:
-    postcode = query_params["postcode"][0].strip().replace(" ", "").upper()
+if "postcode" in query_params:
+    postcode_raw = query_params["postcode"]
+    if isinstance(postcode_raw, list):  # Handle the case where query_params returns a list
+        postcode = postcode_raw[0]  # Get the first item
+    else:
+        postcode = postcode_raw  # Directly use the string value
+    postcode = postcode.strip().replace(" ", "").upper()  # Normalize the postcode
 else:
     postcode = None
 
+# Debugging outputs
+st.write("Raw query parameters:", query_params)  # Debug the raw input
+st.write("Extracted raw postcode:", postcode_raw if "postcode" in query_params else None)  # Debug raw value
 st.write("Normalized postcode:", postcode)  # Debug the processed postcode
 
 # Debugging outputs
