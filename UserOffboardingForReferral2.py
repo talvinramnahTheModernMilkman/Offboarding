@@ -121,7 +121,7 @@ if postcode:
                 interested_users = unservicable_df[unservicable_df['HUB_ID'] == hub_id].shape[0]
                 st.warning(
                     f"Sorry, we don’t deliver to your area yet, but we are looking at expanding into **{hub_name}**. "
-                    f"**{interested_users} people** are interested. Get your {hub_name} to 5000 sign ups by sharing the link below to get us in your area!"
+                    f"**{interested_users} people** are interested. Get {hub_name} to 5000 sign ups by sharing the link below to get us in your area!"
                 )
                 referral_link = f"https://themodernmilkman.co.uk/refer?postcode={postcode}"
                 st.info(f"Share your referral link: https://themodernmilkman.co.uk/?utm_source=GetModernMilkmanToYourArea")
