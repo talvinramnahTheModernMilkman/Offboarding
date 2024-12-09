@@ -4,7 +4,7 @@ import gdown
 import requests
 
 # Debugging mode
-DEBUG = False
+DEBUG = None
 
 # Data file URLs
 polygon_file_url = "https://drive.google.com/uc?id=19cdI-kinFtT1CqpYRVCfrXvvk16rTkKA"
