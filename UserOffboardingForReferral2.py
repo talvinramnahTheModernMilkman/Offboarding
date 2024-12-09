@@ -102,7 +102,7 @@ if postcode:
 
         # Debug matching logic
         matching_entries = polygon_df[polygon_df['POSTCODE'] == postcode]
-        st.write("Matching entries in polygon_df:", matching_entries)
+        #st.write("Matching entries in polygon_df:", matching_entries)
 
         # Find the sector for the given postcode
         result = polygon_df.loc[polygon_df['POSTCODE'] == postcode, 'POLYGON_SECTOR']
